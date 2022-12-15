@@ -54,6 +54,21 @@ public class Library {
 
 
     	try {
+    		String text = """  				
+    				Please insert a number from 1 to 9
+    				1 - Change title
+    				2 - Change authors
+    				3 - Change edition date
+    				4 - Change publisher
+    				5 - Change gender
+    				6 - Change ISBN
+    				7 - Change Location
+    				8 - Borrow Book
+    				9 - Retrieve Book
+
+        			""";
+    	System.out.println(text);
+
     	command = Integer.parseInt( cnsl.nextLine());
     	} catch (NumberFormatException nfe) {
     		System.out.println("Comando no registrado, comience el proceso denuevo");

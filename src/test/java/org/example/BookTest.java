@@ -7,7 +7,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,10 +35,11 @@ class BookTest {
 	void testGetTitle() {
 		assertEquals("El oso polar", book.getTitle());
 	}
-
-	void testGetAuthors() {
-		fail("Not yet implemented");
-	}
+	
+//	@Test
+//	void testGetAuthors() {
+//		fail("Not yet implemented");
+//	}
 
 	@Test
 	void testGetEditionDate() {
@@ -80,15 +80,15 @@ class BookTest {
 		assertEquals("El panda polar", book.getTitle());
 	}
 
-	@Test
-	void testAddAuthor() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	void testAddAuthor() {
+//		fail("Not yet implemented");
+//	}
 
-	@Test
-	void testRemoveAuthor() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	void testRemoveAuthor() {
+//		fail("Not yet implemented");
+//	}
 
 	@Test
 	void testSetEditionDate() throws ParseException {
