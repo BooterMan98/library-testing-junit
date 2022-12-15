@@ -46,10 +46,10 @@ public class Library {
 		// TODO Return book
 	}
 
-	public void editBook(Integer isbn) {
+	public Book editBook(Integer isbn) {
 		Integer command;
 		Book book = this.findBookByISBN(isbn);
-		if (book == null) return;
+		if (book == null) return null;
     	Scanner cnsl = new Scanner(System.in);
 
 
@@ -57,7 +57,7 @@ public class Library {
     	command = Integer.parseInt( cnsl.nextLine());
     	} catch (NumberFormatException nfe) {
     		System.out.println("Comando no registrado, comience el proceso denuevo");
-    		return;
+    		return null;
     	}
     	switch (command) {
     	case 1: // Title
@@ -86,10 +86,10 @@ public class Library {
     		}
     		break;
     	case 3: // edition date
-    		System.out.println("Insert publisher date (dd-MMM-yyyy)");
+    		System.out.println("Insert publisher date (dd-mm-yyyy)");
 
         	String stringDate = cnsl.nextLine();
-        	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+        	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
         	Date date;
         	try {
         	    //Parsing the String
@@ -98,7 +98,7 @@ public class Library {
         	    // TODO Auto-generated catch block
         	    e.printStackTrace();
         	    System.out.println("There was an error in the date, please do the process again");
-        	    return;
+        	    return null;
         	}
         	book.setEditionDate(date);
     		break;
@@ -120,7 +120,7 @@ public class Library {
             	command = Integer.parseInt( cnsl.nextLine());
             	} catch (NumberFormatException nfe) {
             		System.out.println("That wasn't a number, start again");
-            		return;
+            		return null;
             	}
     		break;
     	case 7: // location
@@ -129,8 +129,13 @@ public class Library {
     		String location = cnsl.nextLine();
     		book.setLocation(location);
     		break;
+    	case 8: // borrow
+    		book.borrow();
+    		break;
+    	case 9:
+    		book.onLibrary();
     	}
-    	
+    	return book;
 	}
 	
 	public void deleteBook(Integer isbn) {
@@ -154,12 +159,12 @@ public class Library {
 		book.onLibrary();
 	}
 	
-	public void addBook() {
+	public Book addBook() {
     	Scanner cnsl = new Scanner(System.in);
     	
     	if (cnsl == null) {
             System.out.println("No console available");
-            return;
+            return null;
         }
 		System.out.println("In order to add a new book, we need some details");
 		System.out.println("Intert title: ");
@@ -172,7 +177,7 @@ public class Library {
     	authorQty = Integer.parseInt( cnsl.nextLine());
     	} catch (NumberFormatException nfe) {
     		System.out.println("Not a number, try again");
-    		return;
+    		return null;
     	}
     	List<String> authors = new ArrayList<>();
     	for (Integer c = 0; c < authorQty; c++) {
@@ -193,7 +198,7 @@ public class Library {
     	    // TODO Auto-generated catch block
     	    e.printStackTrace();
     	    System.out.println("There was an error in the date, please do the process again");
-    	    return;
+    	    return null;
     	}
 		System.out.println("Intert publisher: ");
 
@@ -208,7 +213,7 @@ public class Library {
     	isbn = Integer.parseInt( cnsl.nextLine());
     	} catch (NumberFormatException nfe) {
     		System.out.println("Not a number, try again");
-    		return;
+    		return null;
     	}
 		System.out.println("Intert location: ");
 
@@ -217,6 +222,7 @@ public class Library {
 		Book book = new Book(title, authors, date, publisher, gender, isbn, location);
 		System.out.println(book.toString());
 		this.books.add(book);
+		return book;
     	
 	}
 	

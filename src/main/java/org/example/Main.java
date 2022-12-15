@@ -34,8 +34,9 @@ public class Main {
     		 	break;
     		case "edit":
 	 			try {
-	 				Integer isbn = Integer.parseInt(command[2]);
-	 				library.editBook(isbn);
+	 				Integer isbn = Integer.parseInt(command[1]);
+	 				Book abook = library.editBook(isbn);
+	 				if (abook != null)  System.out.println(abook.toString());
 	 			} catch (NumberFormatException nfe) {
 	 				System.out.println("Bad argument");
 
@@ -43,7 +44,7 @@ public class Main {
     		 	break;
     	 	case "remove":
 	 			try {
-	 				Integer isbn = Integer.parseInt(command[2]);
+	 				Integer isbn = Integer.parseInt(command[1]);
 	 				library.deleteBook(isbn);
 	 			} catch (NumberFormatException nfe) {
 	 				System.out.println("Bad argument");
@@ -69,8 +70,11 @@ public class Main {
     	 			try {
     	 				Integer isbn = Integer.parseInt(command[2]);
     	 				Book book = library.findBookByISBN(isbn);
-    	 				if (book == null) System.out.println("Not Found");
+    	 				if (book == null) {
+    	 					System.out.println("Not Found");
+    	 				} else {
     	 				System.out.println(book.toString());
+    	 				}
     	 			} catch (NumberFormatException nfe) {
     	 				System.out.println("Bad argument");
     	 			}
