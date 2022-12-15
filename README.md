@@ -1,4 +1,5 @@
 # consolBooks
+https://github.com/BooterMan98/library-testing-junit
 
 ## Instrucciones de uso
 
@@ -29,4 +30,8 @@ Si selecciona cambiar los autores (3), se solicitar denuevo que indique si va a 
 
 ## Reporte de Preubas
 
-Para acceder al reporte de pruebas, despues de haver ejecutado `mvn package` o `mvn jacoco:report` debe dirigirse a la carpeta site->jacoco y abrir `index.html`
+Para acceder al reporte de pruebas, despues de haver ejecutado `mvn package` o `mvn jacoco:report` debe dirigirse a la carpeta target.>site->jacoco y abrir `index.html`
+
+> Nota: Por algún motivo, al correr el reporte via terminal, no se corren todas las pruebas, entoces comparando con los resultados de eclipse se tiene la siguiente imagen
+
+![Imagen de eclipse](./eclipse%20report.png)
