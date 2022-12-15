@@ -116,7 +116,11 @@ class LibraryTest {
 
 	}
 		
-	/* @Nested
+		// Este se suponía que sería la prueba de editar libros,
+		// Desgraciadamente requería tener un orden especifico
+		//(por un tema de lectura de lineas, no de las pruebas), 
+		//lo cual mo es posible real
+	@Nested
 	class LibraryTest3 {
 		static Library library;
 		static InputStream sysInBackup;
@@ -137,7 +141,7 @@ class LibraryTest {
 		static String line14;
 		static Book book1;
 		@BeforeAll
-		void setUp() throws Exception {
+		static void setUp() throws Exception {
 			library = new Library();
 			//sysInBackup = System.in; // backup System.in to restore it later
 			
@@ -151,7 +155,7 @@ class LibraryTest {
 			line5 = "4";
 			line6 = "A new publisher";
 			line7 = "5";
-			line8 = "Mistery";
+			line8 = "Mystery";
 			line9 = "6";
 			line10 = "12345754";
 			line11 = "7";
@@ -162,24 +166,6 @@ class LibraryTest {
 
 			
 			
-			in = new ByteArrayInputStream((
-					line1 + System.lineSeparator() +
-					line2 + System.lineSeparator() +
-					line3 + System.lineSeparator() +
-					line4 + System.lineSeparator() +
-					line5 + System.lineSeparator() +
-					line6 + System.lineSeparator() +
-					line7 + System.lineSeparator() +
-					line8 + System.lineSeparator() +
-					line9 + System.lineSeparator() +
-					line10 + System.lineSeparator() +
-					line11 + System.lineSeparator() +
-					line12 + System.lineSeparator() +
-					line13 + System.lineSeparator() +
-					line14 + System.lineSeparator()
-
-					).getBytes());
-			System.setIn(in);
 			
 			book1 = new Book("El oso polar",
 					new ArrayList<String>(Arrays.asList("Arthur", "César")),
@@ -211,12 +197,23 @@ class LibraryTest {
 		
 		@Test
 		void testEditTitle() {
+			in = new ByteArrayInputStream((
+					line1 + System.lineSeparator() +
+					line2 + System.lineSeparator()
+					).getBytes());
+			System.setIn(in);
+			
 			Book book = library.editBook(12345745);
 			assertEquals("El panda", book.getTitle());
 		}
 		
 		@Test
 		void testEditEditionDate() {
+			in = new ByteArrayInputStream((
+					line3 + System.lineSeparator() +
+					line4 + System.lineSeparator()
+					).getBytes());
+			System.setIn(in);
 			Book book = library.editBook(12345745);
 	    	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
 
@@ -224,34 +221,62 @@ class LibraryTest {
 		}
 		@Test
 		void testEditPublisher() {
+			in = new ByteArrayInputStream((
+					line5 + System.lineSeparator() +
+					line6 + System.lineSeparator()
+					).getBytes());
+			System.setIn(in);
 			Book book = library.editBook(12345745);
 			assertEquals("A new publisher", book.getPublisher());
 		}
 		@Test
 		void testEditGender() {
+			in = new ByteArrayInputStream((
+					line7 + System.lineSeparator() +
+					line8 + System.lineSeparator()
+					).getBytes());
+			System.setIn(in);
 			Book book = library.editBook(12345745);
 			assertEquals("Mystery", book.getGender());
 		}
 		@Test
 		void testEditISBN() {
+			in = new ByteArrayInputStream((
+					line9 + System.lineSeparator() +
+					line10 + System.lineSeparator()
+					).getBytes());
+			System.setIn(in);
 			Book book = library.editBook(12345745);
 			assertEquals(12345754, book.getISBN());
 		}
 		@Test
 		void testEditLocation() {
+			in = new ByteArrayInputStream((
+					line11 + System.lineSeparator() +
+					line12 + System.lineSeparator()
+					).getBytes());
+			System.setIn(in);
 			Book book = library.editBook(12345745);
 			assertEquals("Estante D, sala 20", book.getLocation());
 		}
 		@Test
 		void testBorrow() {
+			in = new ByteArrayInputStream((
+					line13 + System.lineSeparator()
+					).getBytes());
+			System.setIn(in);
 			Book book = library.editBook(12345745);
 			assertEquals(Status.BORROWED, book.getStatus());
 		}
 		@Test
 		void testRetrieve() {
+			in = new ByteArrayInputStream((
+					line14 + System.lineSeparator()
+					).getBytes());
+			System.setIn(in);
 			Book book = library.editBook(12345745);
 			assertEquals(Status.LIBRARY, book.getStatus());
 		}
-	} */
+	}
 }
 

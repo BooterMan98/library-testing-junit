@@ -69,7 +69,8 @@ public class Library {
         			""";
     	System.out.println(text);
 
-    	command = Integer.parseInt( cnsl.nextLine());
+    	String paso = cnsl.nextLine();
+    	command = Integer.parseInt(paso);
     	} catch (NumberFormatException nfe) {
     		System.out.println("Comando no registrado, comience el proceso denuevo");
     		return null;
