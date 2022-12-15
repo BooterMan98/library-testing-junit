@@ -22,7 +22,7 @@ public class Library {
 		for (Book book: books) {
 			if (book.getTitle() == inputTitle) foundBooks.add(book);
 		}
-		return (Book[]) foundBooks.toArray();
+		return foundBooks.toArray(new Book[foundBooks.size()]);
 	}
 	public Book[] findBookByAuthor(String inputAuthor) {
 		List<Book> foundBooks = new ArrayList<Book>();
@@ -33,19 +33,20 @@ public class Library {
 				if (author == inputAuthor) foundBooks.add(book);
 			}
 		}
-		return (Book[]) foundBooks.toArray();
+		return foundBooks.toArray(new Book[foundBooks.size()]);
 		// TODO Return book
 	}
-	public Book findBookByISBN(Number isbn) {
+	public Book findBookByISBN(Integer isbn) {
 		for (Book book: books) {
 			System.out.println(book.getISBN());
-			if (book.getISBN() == isbn) return book;
+			Integer bookISBN = book.getISBN();
+			if (bookISBN.equals(isbn)) return book;
 		}
 		return null;
 		// TODO Return book
 	}
 
-	public void editBook(Number isbn) {
+	public void editBook(Integer isbn) {
 		Integer command;
 		Book book = this.findBookByISBN(isbn);
 		if (book == null) return;
@@ -132,21 +133,21 @@ public class Library {
     	
 	}
 	
-	public void deleteBook(Number isbn) {
+	public void deleteBook(Integer isbn) {
 		Book book = this.findBookByISBN(isbn);
 		if (book == null) return;
 		int index = books.indexOf(book);
 		books.remove(index);
 	}
 	
-	public void borrowBook(Number isbn) {
+	public void borrowBook(Integer isbn) {
 		Book book = this.findBookByISBN(isbn);
 		if (book == null) return;
 
 		book.borrow();
 	}
 	
-	public void retrieveBook(Number isbn) {
+	public void retrieveBook(Integer isbn) {
 		Book book = this.findBookByISBN(isbn);
 		if (book == null) return;
 
@@ -219,5 +220,8 @@ public class Library {
     	
 	}
 	
+    public void addBook(Book book) {
+    	this.books.add(book);
+    }
 	
 }

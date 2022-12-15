@@ -53,12 +53,14 @@ public class Main {
     	 	case "find":
     	 		switch (command[1].toLowerCase()) {
     	 		case "title":
-    	 			List<String> title = Arrays.asList(command);
+    	 			List<String> title = new ArrayList<>(Arrays.asList(command));
+    	 			title.remove(0);
     	 			title.remove(0);
     	 			foundBooks = library.findBookByTitle(String.join(" ", title));
     	 			break;
     	 		case "author":
-    	 			List<String> posibleAuthor = Arrays.asList(command);
+    	 			List<String> posibleAuthor = new ArrayList<>(Arrays.asList(command));
+    	 			posibleAuthor.remove(0);
     	 			posibleAuthor.remove(0);
     	 			foundBooks = library.findBookByAuthor(String.join(" ", posibleAuthor));
 	 				System.out.println(foundBooks.toString());
@@ -67,6 +69,7 @@ public class Main {
     	 			try {
     	 				Integer isbn = Integer.parseInt(command[2]);
     	 				Book book = library.findBookByISBN(isbn);
+    	 				if (book == null) System.out.println("Not Found");
     	 				System.out.println(book.toString());
     	 			} catch (NumberFormatException nfe) {
     	 				System.out.println("Bad argument");

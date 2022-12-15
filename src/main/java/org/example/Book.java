@@ -15,7 +15,7 @@ public class Book {
 
     public Book(String title, List<String> authors, Date editionDate, String publisher, String gender, Integer ISBN, String location) {
     	this.title = title;
-    	this.authors = new ArrayList<>(authors);;
+    	this.authors = new ArrayList<String>(authors);;
     	this.editionDate = editionDate;
     	this.publisher = publisher;
     	this.gender = gender;
@@ -28,7 +28,8 @@ public class Book {
         return title;
     }
     public String[] getAuthors() {
-        return (String[]) authors.toArray();
+    	String[] authors = this.authors.toArray(new String[this.authors.size()]);
+        return authors;
     }
     public Date getEditionDate() {
         return editionDate;
